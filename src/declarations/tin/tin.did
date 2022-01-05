@@ -1,0 +1,24 @@
+type UserUpdate = record {userData: UserData;};
+type UserData = 
+ record {
+   dateOfBirth: opt text;
+   name: opt text;
+   profilePhotos: vec opt text;
+   profileVideoIds: vec nat;
+ };
+type User = 
+ record {
+   id: principal;
+   userData: UserData;
+ };
+type ChunkId = nat;
+type ChunkData = text;
+service : {
+  create: (UserUpdate) -> (text);
+  delete: () -> (bool);
+  getChunk: (ChunkId) -> (opt ChunkData);
+  read: () -> (opt User);
+  setChunk: (ChunkId, ChunkData) -> (text);
+  update: (User) -> (bool);
+  whoami: () -> (principal);
+}
